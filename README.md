@@ -18,29 +18,33 @@ Download the competition data according to (https://www.kaggle.com/competitions/
 
 Organize data into ImageNet dataset format
 #### 2. Train the Model
-We used both eva_large_patch14_336.in22k_ft_in1k and beit_large_patch16_512.in22k_ft_in22k_in1k models.
 ```
 sh distributed_train.sh 4 -c [config_path] --out [out_path]
 ```
 #### 3. Feature Extraction
-Here the feature extraction is performed on our trained model for query and gallery and the similarity matrix between the features is calculated.
+Here the feature extraction is performed on our trained model for query and gallery 
 ```
 sh feature_extraction.sh
 ```
-#### 4. Model Fusion
+#### 4. Feature Enhancement
+Fusion of the above trained models.
+```
+python model_fuse.py
+```
+#### 5. Model Fusion
 Fusion of the above trained models.
 ```
 python model_fuse.py
 ```
 
-#### 5. Similarity matrix post-processing
+#### 6. Similarity matrix post-processing
 In this step the queries and galleries are grouped according to the similarity matrix, and the same set of queries is a class.
 ```
 sh 
 ```
-#### 6. Generate hashcode
+#### 7. Generate hashcode
 Use the MD5 encryption method of hashlib to generate a 12-bit hexadecimal code for the image, and then convert it to a 48-bit hashcode.
 ```
-python
+python hash_code.py
 ```
 

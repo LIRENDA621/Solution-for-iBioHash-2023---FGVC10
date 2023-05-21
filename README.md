@@ -25,7 +25,7 @@ sh distributed_train.sh 4 -c [config_path] --out [out_path]
 #### 3. Feature Extraction
 Here the feature extraction is performed on our trained model for query and gallery and the similarity matrix between the features is calculated.
 ```
-sh 
+sh feature_extraction.sh
 ```
 #### 4. Model Fusion
 Fusion of the above trained models.

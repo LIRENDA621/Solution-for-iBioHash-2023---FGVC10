@@ -1,0 +1,22 @@
+index:
+  feature_names: ['output']
+
+  dim_processors:
+    names: ["L2Normalize"]
+
+  feature_enhancer:
+    name: "DBA"  # "Identity" / "DBA"
+    DBA: 
+      enhance_k: 1  # number of the nearest points to be calculated.
+
+  metric:
+    name: "KNN"
+  
+  re_ranker:
+    name: "QE"  # "Identity"
+    QE:
+      qe_times: 1  # number of query expansion times.
+      qe_k: 1 # number of the neighbors to be combined.
+
+  
+

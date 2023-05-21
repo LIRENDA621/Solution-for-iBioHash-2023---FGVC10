@@ -1,0 +1,28 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: 当前文件",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            // "args": ["-c", "configs/vit_large.yaml"]
+
+            // post --config_file post_config/market_w_tricks.yaml
+            "args": ["--config_file", "post_config/market_w_tricks.yaml",
+                     "--feat_dir", "/home/data1/changhao/iBioHash/Results/features/beit_best_cross_domain_90000_e1"
+                    ],
+            "justMyCode": false,
+
+            // "args": ["--model", "beit_large_patch16_512.in22k_ft_in22k_in1k",
+            //          "--checkpoint", "/home/data1/changhao/iBioHash/Record/cls_baseline/beit/beit_size512/20230402-003503-beit_large_patch16_512_in22k_ft_in22k_in1k-512/model_best.pth.tar",
+            //          "-b", "2"
+            //         ],
+                     
+        }
+    ]
+}

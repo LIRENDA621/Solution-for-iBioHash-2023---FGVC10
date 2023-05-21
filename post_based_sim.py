@@ -21,14 +21,17 @@ os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 def parse_args():
     parser = argparse.ArgumentParser(description='A tool box for deep learning-based image retrieval')
     parser.add_argument('opts', default=None, nargs=argparse.REMAINDER)
-    parser.add_argument('--config_file', '-cfg', default='/home/data1/changhao/iBioHash/Codes/pytorch-image-models-main/post_config/market_w_tricks.yaml', metavar='FILE', type=str, help='path to config file')
+    parser.add_argument('--config_file', '-cfg', default='', metavar='FILE', type=str, help='path to config file')
     parser.add_argument('--top_k', type=int, default=None, metavar='top_k')
     parser.add_argument('--post_thr', type=int, default=None, metavar='top_k')
+    parser.add_argument('--feat_dir', default='', metavar='FILE', type=str)
+    parser.add_argument('--smi_dir', default='', metavar='FILE', type=str)
+     parser.add_argument('--save_path', default='', metavar='FILE', type=str)
     args = parser.parse_args()
     return args
 
 feat_dir_dict = {
-    "/home/data1/changhao/iBioHash/Results/features/eva_e1_enhance": 1,
+    args.feat_dir: 1,
     }
 
 def main():
@@ -152,7 +155,7 @@ def main():
 
 
         # ======= gallery 分配 =======
-        with open(os.path.join('/home/data1/changhao/iBioHash/Results/fused_results/cross_beit_e1_eva_e1/similarity.pkl'), "rb") as f:
+        with open(os.path.join(args.smi_dir), "rb") as f:
             qg_dis = pickle.load(f)
         qg_sorted_index = []
         for i in range(math.ceil(qg_dis.size(0)/400)):
@@ -267,7 +270,7 @@ def main():
         
 
         result_dict = pd.DataFrame({'Id':query_names,'Predicted':retreival_results})
-        result_dict[['Id','Predicted']].to_csv(os.path.join('/home/data1/changhao/iBioHash/Codes/pytorch-image-models-main/lrd_post_sim_submit', 'submit_post_based_sim_method21_eva_beit.csv'), index=False)
+        result_dict[['Id','Predicted']].to_csv(args.save_path), index=False)
     
 
 

@@ -595,17 +595,6 @@ def main():
         batch_size=args.batch_size,
     )
 
-    # -----------------change data list
-    # with open("path", "r") as f:
-    #     all_info = json.load(f)
-    # samples = []
-    # dataset_train.reader.samples = samples
-
-    # with open("path", "r") as f:
-    #     all_info = json.load(f)
-    # samples = []
-    # dataset_eval.reader.samples = samples
-
     # setup mixup / cutmix
     collate_fn = None
     mixup_fn = None

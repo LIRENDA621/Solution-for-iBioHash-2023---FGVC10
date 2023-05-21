@@ -24,13 +24,13 @@ python train.py  -c [args.config] --output [args.output]
 #### 3. Feature Extraction
 Here the feature extraction is performed on our trained model for query and gallery.
 ```
-python  feature_extraction.py
+python  feature_extraction.py [args.model, args.checkpoint,args.b,args.feature_outdir]
 ```
 
 #### 4. Feature Enhancement
 Feature enhancement is performed separately for the trained model.We use the pyretri repository（https://github.com/PyRetri/PyRetri/tree/master/pyretri）
 ```
-python post_process.py
+python post_process.py [args.config_file, args.feature_dir]
 ```
 
 #### 5. Model Fusion

@@ -60,7 +60,9 @@ _logger = logging.getLogger('validate')
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Validation')
 parser.add_argument('data', nargs='?', metavar='DIR', const=None,
                     help='path to dataset (*deprecated*, use --data-dir)') # --------
-parser.add_argument('--data-dir', metavar='DIR',default='/home/data1/changhao/iBioHash/Datasets',
+parser.add_argument('--data-dir', metavar='DIR',default='',
+                    help='path to dataset (root dir)')
+parser.add_argument('--save_path', metavar='DIR',default='',
                     help='path to dataset (root dir)')
 parser.add_argument('--dataset', metavar='NAME', default='',
                     help='dataset type + name ("<type>/<name>") (default: ImageFolder or ImageTar if empty)')
@@ -153,9 +155,9 @@ parser.add_argument('--retry', default=False, action='store_true',
                     help='Enable batch size decay & retry for single model validation')
 
 # -------------------
-parser.add_argument('--gallery_split', metavar='NAME', default='iBioHash_Gallery/Gallery',
+parser.add_argument('--gallery_split', metavar='NAME', default='',
                     help='dataset split (default: validation)')
-parser.add_argument('--query_split', metavar='NAME', default='iBioHash_Query/Query',
+parser.add_argument('--query_split', metavar='NAME', default='',
                     help='dataset split (default: validation)')
 parser.add_argument('--pool', '-p', metavar='NAME', default='avg',
                     help='')
@@ -387,8 +389,8 @@ def validate(args):
 
               
         # -------------
-        os.makedirs(os.path.join('/home/data1/changhao/iBioHash/Results/features',args.feature_outdir), exist_ok=True)
-        with open(os.path.join('/home/data1/changhao/iBioHash/Results/features',args.feature_outdir, 'query.pkl'),'wb') as f:
+        os.makedirs(os.path.join(args.save_path,args.feature_outdir), exist_ok=True)
+        with open(os.path.join(args.save_path,args.feature_outdir, 'query.pkl'),'wb') as f:
             pickle.dump(query_tensor.cpu().numpy(), f,protocol=4)
         # query_tensor_list.append(query_tensor.cpu().numpy())
 
@@ -418,13 +420,13 @@ def validate(args):
         gallery_tensor_list.append(gallery_tensor.cpu().numpy())
         similarity_tensor_list.append(similarity_tensor.cpu().numpy())
         # -------------
-        with open(os.path.join('/home/data1/changhao/iBioHash/Results/features',args.feature_outdir, 'gallery.pkl'),'wb') as f:
+        with open(os.path.join(args.save_path,args.feature_outdir, 'gallery.pkl'),'wb') as f:
                 pickle.dump(gallery_tensor.cpu().numpy(), f,protocol=4)
 
-        with open(os.path.join('/home/data1/changhao/iBioHash/Results/features',args.feature_outdir, 'similarity.pkl'),'wb') as f:
+        with open(os.path.join(args.save_path,args.feature_outdir, 'similarity.pkl'),'wb') as f:
             pickle.dump(similarity_tensor.cpu().numpy(), f,protocol=4)
 
-        with open(os.path.join('/home/data1/changhao/iBioHash/Results/features',args.feature_outdir, 'names.pkl'),'wb') as f:
+        with open(os.path.join(args.save_path,args.feature_outdir, 'names.pkl'),'wb') as f:
             pickle.dump({
                 "query": dataset_query.reader,
                 "gallery": dataset_gallery.reader
@@ -527,7 +529,7 @@ def main():
             result_dict = pd.DataFrame({'Id':query_names,'Predicted':retreival_results})
             # result_dict.to_csv('denseFull.csv', index=False)
             # result_dict[['Id','Predicted']].to_csv('./submited/{}.csv'.format(args.file_name), index=False)
-            result_dict[['Id','Predicted']].to_csv(os.path.join('/home/data1/changhao/iBioHash/Results/features',args.feature_outdir, 'submit.csv'), index=False)
+            result_dict[['Id','Predicted']].to_csv(os.path.join(args.save_path,args.feature_outdir, 'submit.csv'), index=False)
 
     if args.results_file:
         write_results(args.results_file, results, format=args.results_format)

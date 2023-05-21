@@ -19,18 +19,18 @@ Download the competition data according to (https://www.kaggle.com/competitions/
 Organize data into ImageNet dataset format
 #### 2. Train the Model
 ```
-sh distributed_train.sh 4 -c [config_path] --out [out_path]
+python train.py  -c [config_path] --out [out_path]
 ```
 #### 3. Feature Extraction
 Here the feature extraction is performed on our trained model for query and gallery.
 ```
-sh feature_extraction.sh
+python  feature_extraction.py
 ```
 
 #### 4. Feature Enhancement
 Feature enhancement is performed separately for the trained model.
 ```
-sh post_process.sh
+python post_process.py
 ```
 
 #### 5. Model Fusion

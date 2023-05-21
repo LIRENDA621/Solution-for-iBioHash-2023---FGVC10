@@ -1,4 +1,4 @@
-# solution_iBioHash_2023_FGVC10_1st
+# Top 1 solution for iBioHash_2023_competition
 Top 1 (1/23)  solution for [iBioHash 2023](https://www.kaggle.com/competitions/ibiohash-2023-fgvc10/overview) competition, which is as part of the  [FGVC10](https://sites.google.com/view/fgvc10/home) workshop at [CVPR 2023](http://cvpr2023.thecvf.com/)
 
 Thanks to my team members!
@@ -22,15 +22,17 @@ Organize data into ImageNet dataset format
 sh distributed_train.sh 4 -c [config_path] --out [out_path]
 ```
 #### 3. Feature Extraction
-Here the feature extraction is performed on our trained model for query and gallery 
+Here the feature extraction is performed on our trained model for query and gallery.
 ```
 sh feature_extraction.sh
 ```
+
 #### 4. Feature Enhancement
-Fusion of the above trained models.
+Feature enhancement is performed separately for the trained model.
 ```
-python model_fuse.py
+sh post_process.sh
 ```
+
 #### 5. Model Fusion
 Fusion of the above trained models.
 ```

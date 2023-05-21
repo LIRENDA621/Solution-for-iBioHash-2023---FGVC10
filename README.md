@@ -42,7 +42,7 @@ python model_fuse.py
 #### 6. Similarity matrix post-processing
 In this step the queries and galleries are grouped according to the similarity matrix, and the same set of queries is a class.
 ```
-sh 
+python post_based_sim.py
 ```
 #### 7. Generate hashcode
 Use the MD5 encryption method of hashlib to generate a 12-bit hexadecimal code for the image, and then convert it to a 48-bit hashcode.

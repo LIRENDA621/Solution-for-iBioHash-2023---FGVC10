@@ -20,7 +20,7 @@ os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 def parse_args():
     parser = argparse.ArgumentParser(description='A tool box for deep learning-based image retrieval')
     parser.add_argument('opts', default=None, nargs=argparse.REMAINDER)
-    parser.add_argument('--config_file', '-cfg', default=None, metavar='FILE', type=str, help='path to config file')
+    parser.add_argument('--config_file', '-cfg', default="pyretri config", metavar='FILE', type=str, help='path to config file')
     parser.add_argument('--feat_dir', '-fd', default=None, metavar='FILE', type=str, help='path to feature')
     parser.add_argument('--domain', default='cross_domin', type=str)
     parser.add_argument('--sim_dir', default='', type=str)

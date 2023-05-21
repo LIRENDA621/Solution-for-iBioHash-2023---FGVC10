@@ -61,12 +61,10 @@ def main():
         metric = KNN()
         dis, sorted_index = metric(query_fea, query_fea) # + 2
 
-        # ======== query 分组 ==============
         mode_split = 'method2_10'
         if mode_split == 'method2_10':
             skip_i = []
             group_select = [[] for i in range(11)]
-            # 寻找公共子集
             for topk_select in range(10, 5, -1):   
                 group_topk_select = []
                 print('topk: ' +str(topk_select))
@@ -154,7 +152,6 @@ def main():
             group_select.pop(0)
 
 
-        # ======= gallery 分配 =======
         with open(os.path.join(args.smi_dir), "rb") as f:
             qg_dis = pickle.load(f)
         qg_sorted_index = []
@@ -227,9 +224,6 @@ def main():
             skip_i.append(single_q)
 
        
-        # 将单个的query分配给 已分好的组
-
-
         group_single_select = []
         for i in range(10000):
             if i in skip_i:

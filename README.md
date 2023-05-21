@@ -28,7 +28,7 @@ python  feature_extraction.py
 ```
 
 #### 4. Feature Enhancement
-Feature enhancement is performed separately for the trained model.
+Feature enhancement is performed separately for the trained model.We use the pyretri repository（https://github.com/PyRetri/PyRetri/tree/master/pyretri）
 ```
 python post_process.py
 ```

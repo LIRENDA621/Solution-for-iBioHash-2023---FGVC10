@@ -17,15 +17,17 @@ from sklearn.cluster import AgglomerativeClustering, SpectralClustering, kmeans_
 import copy
 os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
-# 跨域
+eva_save_path=''
+beit_save_path=''
+
 feat_dir_dict = {
-    "/home/data1/changhao/iBioHash/Results/similarity/eva_best_e1": 0.1,
-    "/home/data1/changhao/iBioHash/Results/similarity/beit_best_e1": 0.9,
+    eva_save_path: 0.1,
+    beit_save_path: 0.9,
 }
 
-output_file_path = os.path.join('/home/data1/changhao/iBioHash/Results/fused_results', 'cross_beit_e1_eva_e1') 
+output_file_path = ''
 # ===================================================
-with open(os.path.join('/home/data1/changhao/iBioHash/Results/features/eva_best_e1_1','names.pkl'), "rb") as f:
+with open(os.path.join(eva_save_path,'names.pkl'), "rb") as f:
     data = pickle.load(f)
     query_names = [item[0].name.split("/")[-1] for item in data['query']]
     gallery_names = [item[0].name.split("/")[-1].split('.')[0] for item in data['gallery']]
@@ -89,34 +91,6 @@ elif fuse_mode == 'concate':
     submit_file_name = 'submit'
 
 result_dict[['Id','Predicted']].to_csv(os.path.join(output_file_path, '{}.csv'.format(submit_file_name)), index=False)
-
-result_dict_3000 = copy.deepcopy(result_dict)
-for i in range(3000, 10000):
-    result_dict_3000.iloc()[i][1] = ''
-result_dict_3000[['Id','Predicted']].to_csv(os.path.join(output_file_path, '{}_1_3000.csv'.format(submit_file_name)), index=False)
-
-result_dict_6000 = copy.deepcopy(result_dict)
-for i in range(3000):
-    result_dict_6000.iloc()[i][1] = ''
-for i in range(6000, 10000):
-    result_dict_6000.iloc()[i][1] = ''
-result_dict_6000[['Id','Predicted']].to_csv(os.path.join(output_file_path, '{}_3001_6000.csv'.format(submit_file_name)), index=False)
-
-result_dict_10000 = copy.deepcopy(result_dict)
-for i in range(6000):
-    result_dict_10000.iloc()[i][1] = ''
-result_dict_10000[['Id','Predicted']].to_csv(os.path.join(output_file_path, '{}_6001_10000.csv'.format(submit_file_name)), index=False)
-
-result_dict_5000_1 = copy.deepcopy(result_dict)
-for i in range(5000, 10000):
-    result_dict_5000_1.iloc()[i][1] = ''
-result_dict_5000_1[['Id','Predicted']].to_csv(os.path.join(output_file_path, '{}_1_5000.csv'.format(submit_file_name)), index=False)
-
-result_dict_5000_2 = copy.deepcopy(result_dict)
-for i in range(5000):
-    result_dict_5000_2.iloc()[i][1] = ''
-result_dict_5000_2[['Id','Predicted']].to_csv(os.path.join(output_file_path, '{}_5001_10000.csv'.format(submit_file_name)), index=False)
-
 
         
 

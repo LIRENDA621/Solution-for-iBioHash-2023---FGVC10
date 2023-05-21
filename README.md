@@ -19,7 +19,7 @@ Download the competition data according to (https://www.kaggle.com/competitions/
 Organize data into ImageNet dataset format
 #### 2. Train the Model
 ```
-python train.py  -c [config_path] --out [out_path]
+python train.py  -c [args.config] --output [args.output]
 ```
 #### 3. Feature Extraction
 Here the feature extraction is performed on our trained model for query and gallery.

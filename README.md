@@ -20,7 +20,7 @@ Organize data into ImageNet dataset format
 #### 2. Train the Model
 We used both eva_large_patch14_336.in22k_ft_in1k and beit_large_patch16_512.in22k_ft_in22k_in1k models.
 ```
-sh 
+sh distributed_train.sh 4 -c [config_path] --out [out_path]
 ```
 #### 3. Feature Extraction
 Here the feature extraction is performed on our trained model for query and gallery and the similarity matrix between the features is calculated.

@@ -1,5 +1,5 @@
 # Top 1 solution for iBioHash_2023_competition
-Top 1 (1/23)  solution for [iBioHash 2023](https://www.kaggle.com/competitions/ibiohash-2023-fgvc10/overview) competition, which is as part of the  [FGVC10](https://sites.google.com/view/fgvc10/home) workshop at [CVPR 2023](http://cvpr2023.thecvf.com/)
+Top 1 (1/23)  solution for iBioHash_2023_competition
 
 Thanks to my team members!
 

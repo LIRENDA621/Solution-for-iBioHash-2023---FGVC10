@@ -60,37 +60,6 @@ if fuse_mode == 'sum':
 
     submit_file_name = 'submit_fused_{}'.format(output_file_path.split('/')[-1])
 
-elif fuse_mode == 'concate':
-    
-    similarity_index_all = []
-    retreival_results = []
-
-    for fea_dir, weight in feat_dir_dict.items():
-        with open(os.path.join(fea_dir,'similarity.pkl'), "rb") as f:
-            sim = pickle.load(f)
-        similarity_index = sim.topk(k=20, dim=1)[1]
-        similarity_index_all.append(similarity_index)
-
-    for query_index in range(10000): 
-        temp_fused_topk_list = []
-
-        current_point = [0 for _ in range(len(similarity_index_all))]  
-        while len(temp_fused_topk_list) != 20:
-            for model_i in range(len(similarity_index_all)): 
-                cur_gallery_index = int(similarity_index_all[model_i][query_index][current_point[model_i]])
-                if cur_gallery_index not in temp_fused_topk_list:
-                    temp_fused_topk_list.append(cur_gallery_index)
-                
-                if len(temp_fused_topk_list) == 20:
-                    break
-                current_point[model_i] += 1
-
-        temp_name_list = [gallery_names[j] for j in temp_fused_topk_list]
-        retreival_results.append(' '.join(temp_name_list))
-    result_dict = pd.DataFrame({'Id':query_names,'Predicted':retreival_results})
-    submit_file_name = 'submit'
-
-result_dict[['Id','Predicted']].to_csv(os.path.join(output_file_path, '{}.csv'.format(submit_file_name)), index=False)
 
         
 

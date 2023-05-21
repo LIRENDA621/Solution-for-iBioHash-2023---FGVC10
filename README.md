@@ -30,7 +30,7 @@ sh feature_extraction.sh
 #### 4. Model Fusion
 Fusion of the above trained models.
 ```
-sh 
+python model_fuse.py
 ```
 
 #### 5. Similarity matrix post-processing

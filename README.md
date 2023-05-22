@@ -28,7 +28,7 @@ python  feature_extraction.py [--ages_name args]
 ```
 
 #### 4. Feature Enhancement
-Feature enhancement is performed separately for the trained model.We use the pyretri repository（https://github.com/PyRetri/PyRetri/tree/master/pyretri）
+Feature enhancement is performed separately for the trained model.We use the pyretri repository（https://github.com/PyRetri/PyRetri/tree/master/pyretri） ，feature enhancement is performed on the features that have been extracted.
 ```
 python post_process.py [--ages_name args]
 ```

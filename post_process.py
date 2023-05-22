@@ -52,7 +52,6 @@ def main():
         index_helper = build_index_helper(cfg.index)
         query_fea, query_fea_qe, gallery_fea, dis = index_helper.do_index(query_fea, query_names, gallery_fea)
         
-        # 保存输出文件
         output_file_path = os.path.join(args.sim_dir, args.domain, "{}_dba{}_qe{}".format(feat_dir.split('/')[-1], cfg.index.feature_enhancer.DBA.enhance_k, cfg.index.re_ranker.QE.qe_k))
 
         if not os.path.exists(output_file_path):

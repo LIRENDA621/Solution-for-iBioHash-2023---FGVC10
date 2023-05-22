@@ -260,12 +260,6 @@ def validate(args):
     # ------------
     if args.pool == 'avg':
         Pooling = torch.nn.AdaptiveAvgPool2d(1)
-    # elif args.pool == 'rmac':
-    #     Pooling = RMAC()
-    # elif args.pool == 'ramac':
-    #     Pooling = RAMAC()
-    # elif args.pool == 'grmac':
-    #     Pooling = GRMAC()
     else:
         raise NotImplementedError
 
@@ -273,14 +267,7 @@ def validate(args):
 
     # ---------
     root_dir = args.data or args.data_dir
-    # dataset = create_dataset(
-    #     root=root_dir,
-    #     name=args.dataset,
-    #     split=args.split,
-    #     download=args.dataset_download,
-    #     load_bytes=args.tf_preprocessing,
-    #     class_map=args.class_map,
-    # )
+  
     dataset_gallery = create_dataset(
         root=root_dir,
         name=args.dataset,
